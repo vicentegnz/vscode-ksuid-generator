@@ -7,26 +7,6 @@ on:
     - created
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [windows-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Install Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 16.x
-    - run: npm install
-    - run: xvfb-run -a npm run compile
-      if: runner.os == 'Linux'
-    - run: npm run compile
-      if: runner.os != 'Linux'
-    - run: xvfb-run -a npm run test
-      if: runner.os == 'Linux'
-    - run: npm run test
-      if: runner.os != 'Linux'
     - name: Publish
       if: success() && startsWith( github.ref, 'refs/tags/releases/') && matrix.os == 'ubuntu-latest'
       run: npm run deploy
