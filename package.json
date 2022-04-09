@@ -9,6 +9,9 @@
     "name": "Vicente González",
     "email": "vicente19600@gmail.com"
   },
+  "modulePaths": [
+    "./out/test/runTest.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/vicentegnz/vscode-ksuid-generator.git"
