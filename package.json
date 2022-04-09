@@ -2,7 +2,7 @@
   "name": "ksuid-generator",
   "displayName": "KSUID Generator",
   "description": "Generate KSUID",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "publisher": "vicentegnz",
   "icon": "docs/ksuid.png",
