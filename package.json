@@ -2,7 +2,7 @@
   "name": "ksuid-generator",
   "displayName": "KSUID Generator",
   "description": "Generate KSUID",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "publisher": "vicentegnz",
   "icon": "docs/ksuid.png",
@@ -27,11 +27,11 @@
   "keywords": [
     "KSUID"
   ],
+  "main": "./out/extension.js",
   "activationEvents": [
     "onCommand:ksuid.generate",
     "onCommand:ksuid.repeat"
   ],
-  "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
@@ -42,21 +42,21 @@
         "command": "ksuid.repeat",
         "title": "Repeat KSUID"
       }
-    ]
-  },
-  "menus": {
-    "editor/context": [
-      {
-        "when": "editorTextFocus",
-        "command": "ksuid.generate",
-        "group": "ksuid"
-      },
-      {
-        "when": "editorHasMultipleSelections",
-        "command": "ksuid.repeat",
-        "group": "ksuid"
-      }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorTextFocus",
+          "command": "ksuid.generate",
+          "group": "ksuid"
+        },
+        {
+          "when": "editorHasMultipleSelections",
+          "command": "ksuid.repeat",
+          "group": "ksuid"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
