@@ -2,7 +2,7 @@
   "name": "ksuid-generator",
   "displayName": "KSUID Generator",
   "description": "Generate KSUID",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "publisher": "vicentegnz",
   "icon": "docs/ksuid.png",
@@ -10,9 +10,6 @@
     "name": "Vicente González",
     "email": "vicente19600@gmail.com"
   },
-  "modulePaths": [
-    "./out/test/runTest.js"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/vicentegnz/vscode-ksuid-generator.git"
@@ -30,7 +27,8 @@
   "main": "./out/extension.js",
   "activationEvents": [
     "onCommand:ksuid.generate",
-    "onCommand:ksuid.repeat"
+    "onCommand:ksuid.repeat",
+    "onStartupFinished"
   ],
   "contributes": {
     "commands": [
@@ -61,6 +59,9 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "pretest": "npm run compile && npm run lint",
     "test": "node ./out/test/runTest.js",
     "deploy": "vsce publish --yarn"
   },
@@ -69,8 +70,10 @@
     "@types/mocha": "^9.1.0",
     "@types/node": "14.x",
     "@types/vscode": "^1.66.0",
-    "@typescript-eslint/parser": "^5.16.0",
+		"@typescript-eslint/eslint-plugin": "^5.12.1",
+		"@typescript-eslint/parser": "^5.12.1",
     "@vscode/test-electron": "^2.1.3",
+		"eslint": "^8.9.0",
     "glob": "^7.2.0",
     "mocha": "^9.2.2",
     "typescript": "^4.5.5",
