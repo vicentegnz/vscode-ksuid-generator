@@ -6,6 +6,10 @@
 
 Visual Studio Code (VS Code) extension that provides commands to generate random KSUID identifiers.
 
+## Demo
+
+
+
 ## Source
 [Github](https://github.com/vicentegnz/vscode-ksuid-generator)
 
