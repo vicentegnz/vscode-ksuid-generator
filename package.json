@@ -4,9 +4,14 @@
   "description": "Generate KSUID",
   "version": "0.0.1",
   "license": "MIT",
+  "icon": "docs/ksuid.png",
   "author": {
     "name": "Vicente González",
     "email": "vicente19600@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vicentegnz/vscode-ksuid-generator.git"
   },
   "engines": {
     "vscode": "^1.66.0"
@@ -34,13 +39,26 @@
         "title": "Repeat KSUID"
       }
     ]
+  }, 
+  "menus": {
+    "editor/context": [
+      {
+        "when": "editorTextFocus",
+        "command": "ksuid.generate",
+        "group": "ksuid"
+      },
+      {
+        "when": "editorHasMultipleSelections",
+        "command": "ksuid.repeat",
+        "group": "ksuid"
+      }
+    ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
@@ -51,13 +69,13 @@
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "@vscode/test-electron": "^2.1.3",
+    "esbuild": "^0.14.34",
     "eslint": "^8.11.0",
     "glob": "^7.2.0",
     "mocha": "^9.2.2",
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "ksuid": "^3.0.0",
-    "tslint": "^6.1.3"
+    "ksuid": "^3.0.0"
   }
 }
