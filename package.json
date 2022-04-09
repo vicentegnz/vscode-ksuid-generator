@@ -4,6 +4,7 @@
   "description": "Generate KSUID",
   "version": "0.0.1",
   "license": "MIT",
+  "publisher": "vicentegnz",
   "icon": "docs/ksuid.png",
   "author": {
     "name": "Vicente González",
