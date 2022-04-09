@@ -7,7 +7,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
@@ -15,6 +15,13 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 16.x
+        node-version: 10.x
     - run: npm install
+    - run: xvfb-run -a npm compile
+      if: runner.os == 'Linux'
+    - run: npm compile
+      if: runner.os != 'Linux'
+    - run: xvfb-run -a npm test
+      if: runner.os == 'Linux'
     - run: npm test
+      if: runner.os != 'Linux'
